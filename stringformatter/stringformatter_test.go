@@ -1,6 +1,9 @@
 package strinformatter
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestCompose(t *testing.T) {
 	_, err := Compose("@<%v> Test Value %v", "VAL 1", "VAL 2")
@@ -28,6 +31,13 @@ func TestCompose(t *testing.T) {
 	// Should error because parameter is mismatch
 	_, err = Compose("@<%v> Test Value")
 	if err == nil {
+		t.Errorf("Failed for test case 5")
+	}
+
+	// Should error because parameter is mismatch
+	resp, err := Compose("@<%v> Test Value", "test")
+	if resp != "@<test> Test Value" {
+		fmt.Println(resp)
 		t.Errorf("Failed for test case 5")
 	}
 }

@@ -29,6 +29,7 @@ func Compose(strs ...string) (string, error) {
 		i++
 
 		if i == vCounter {
+			results = append(results, right)
 			break
 		}
 	}
